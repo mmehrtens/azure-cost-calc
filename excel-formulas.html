@@ -32,12 +32,12 @@
 <h1 class="title">Azure Backup Cost Calculation</h1>
 </header>
 <h2 id="general-parameters">General Parameters</h2>
-<table style="width:98%;">
+<table>
 <colgroup>
-<col style="width: 20%" />
 <col style="width: 7%" />
-<col style="width: 10%" />
-<col style="width: 60%" />
+<col style="width: 4%" />
+<col style="width: 8%" />
+<col style="width: 80%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -102,12 +102,12 @@ class="math inline">\(\implies\)</span> 3200 or 7680 MB/s)</td>
 vs. pay-as-you-go, etc., and should be selectable from Azure cost
 tables. The given defaults are just examples from <em>WestEurope</em>
 region.</p>
-<table style="width:98%;">
+<table>
 <colgroup>
-<col style="width: 27%" />
-<col style="width: 16%" />
-<col style="width: 13%" />
-<col style="width: 40%" />
+<col style="width: 10%" />
+<col style="width: 17%" />
+<col style="width: 15%" />
+<col style="width: 57%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -176,26 +176,34 @@ calls</td>
 <tr class="even">
 <td style="text-align: left;"><span
 class="math inline">\(C_{azure}^{backup(small)}\)</span></td>
-<td style="text-align: left;">$ per VM (&lt;50 GB)</td>
+<td style="text-align: left;">$ per VM (<span
+class="math inline">\(&lt;50\)</span> GB)</td>
 <td style="text-align: right;">5 $</td>
 <td style="text-align: left;">Monthly cost of Azure backup service per
-VM of provisioned size &lt;50 GB</td>
+VM of provisioned size <span
+class="math inline">\(&lt;50\)</span> GB</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span
 class="math inline">\(C_{azure}^{backup(medium)}\)</span></td>
-<td style="text-align: left;">$ per VM (&gt;50 GB and &lt; 500 GB)</td>
+<td style="text-align: left;">$ per VM (<span
+class="math inline">\(\geq50\)</span> GB and <span
+class="math inline">\(&lt;500\)</span> GB)</td>
 <td style="text-align: right;">10 $</td>
 <td style="text-align: left;">Monthly cost of Azure backup service per
-VM of provisioned size between 50 GB and 500 GB</td>
+VM of provisioned size between <span
+class="math inline">\(50\)</span> GB and <span
+class="math inline">\(500\)</span> GB</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span
 class="math inline">\(C_{azure}^{backup(addon)}\)</span></td>
-<td style="text-align: left;">$ per VM per 500 GB</td>
+<td style="text-align: left;">$ per VM per <span
+class="math inline">\(500\)</span> GB</td>
 <td style="text-align: right;">10 $</td>
-<td style="text-align: left;">Monthly add-on cost in steps of 500 GB for
-Azure backup service per VM of provisioned size &gt;500 GB</td>
+<td style="text-align: left;">Monthly add-on cost in steps of <span
+class="math inline">\(500\)</span> GB for Azure backup service per VM of
+provisioned size <span class="math inline">\(&gt;500\)</span> GB</td>
 </tr>
 </tbody>
 </table>
@@ -203,18 +211,16 @@ Azure backup service per VM of provisioned size &gt;500 GB</td>
 of the Azure backup service for a single <em>large</em> VM with
 provisioned size given as <span class="math inline">\(V_{vm}\)</span>
 (&gt;500 GB)</p>
-<blockquote>
 <p><span
-class="math inline">\(C_{azure}^{backup(large)}(V_{vm})=C_{azure}^{backup(medium)}+\Big(C_{azure}^{backup(addon)}\cdot(\textrm{roundup}\Big({\frac{V_{vm}}{\textrm{500
-GB}}}\Big)-1)\Big)\)</span></p>
-</blockquote>
+class="math display">\[C_{azure}^{backup(large)}(V_{vm})=C_{azure}^{backup(medium)}+\Big(C_{azure}^{backup(addon)}\cdot(\textrm{roundup}\Big({\frac{V_{vm}}{\textrm{500
+GB}}}\Big)-1)\Big)\]</span></p>
 <h3 id="veeam-cost-parameters">Veeam Cost Parameters</h3>
-<table style="width:99%;">
+<table>
 <colgroup>
-<col style="width: 45%" />
-<col style="width: 9%" />
-<col style="width: 7%" />
-<col style="width: 35%" />
+<col style="width: 18%" />
+<col style="width: 15%" />
+<col style="width: 6%" />
+<col style="width: 60%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -246,22 +252,24 @@ class="math inline">\(C_{veeam}^{real} = C_{veeam}^{list} \cdot ( 1 -
 D_{veeam})\)</span></td>
 <td style="text-align: center;">$ per VM per month</td>
 <td style="text-align: right;">7.60 $</td>
-<td style="text-align: left;">discounted VUL cost</td>
+<td style="text-align: left;">Real (i.e. discounted) VUL cost</td>
 </tr>
 </tbody>
 </table>
 <h2 id="main-input-variables">Main Input variables</h2>
-<table style="width:98%;">
+<table>
 <colgroup>
-<col style="width: 23%" />
 <col style="width: 9%" />
-<col style="width: 64%" />
+<col style="width: 9%" />
+<col style="width: 62%" />
+<col style="width: 19%" />
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Variable</th>
 <th style="text-align: center;">Unit</th>
 <th style="text-align: left;">Description</th>
+<th>Constraints</th>
 </tr>
 </thead>
 <tbody>
@@ -270,6 +278,7 @@ D_{veeam})\)</span></td>
 class="math inline">\(N_{vm}\)</span></td>
 <td style="text-align: center;"></td>
 <td style="text-align: left;">Number of native Azure VMs to protect</td>
+<td></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span
@@ -277,89 +286,178 @@ class="math inline">\(V_{vm}\)</span></td>
 <td style="text-align: center;">GB</td>
 <td style="text-align: left;">Average provisoned size of VMs to be
 protected</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span
 class="math inline">\(U_{vm}\)</span></td>
 <td style="text-align: center;">%</td>
-<td style="text-align: left;">Average Disk utilization of protected
+<td style="text-align: left;">Average disk utilization of protected
 VMs</td>
+<td></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span
 class="math inline">\(T_{incr}\)</span></td>
 <td style="text-align: center;">hours</td>
 <td style="text-align: left;">Time window for incremental backups</td>
+<td></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span
 class="math inline">\(R_{days}\)</span></td>
 <td style="text-align: center;">days</td>
 <td style="text-align: left;">Retention</td>
+<td></td>
 </tr>
 <tr class="even">
 <td style="text-align: left;"><span
 class="math inline">\(N_{snaps}\)</span></td>
 <td style="text-align: center;"></td>
-<td style="text-align: left;">Number of daily snapshots to be kept (must
-be <span class="math inline">\(\geq1\)</span>)</td>
+<td style="text-align: left;">Number of daily snapshots to be kept</td>
+<td>must be <span class="math inline">\(\geq2\)</span></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><span
 class="math inline">\(\delta_{isfull}\)</span></td>
 <td style="text-align: center;"></td>
-<td style="text-align: left;">does first Azure native snapshot require
-full occupied size ? (<span class="math inline">\(1=yes; 0=
-no\)</span>)</td>
+<td style="text-align: left;">Does first Azure native snapshot require
+full (used) size ?</td>
+<td><span class="math inline">\(1=\)</span> yes | <span
+class="math inline">\(0=\)</span> no</td>
 </tr>
 </tbody>
 </table>
+<hr />
 <h2 id="calculation-formulas">Calculation Formulas</h2>
-<h3 id="veeam">Veeam</h3>
-<p>Total provisioned source volume of workloads in TB:<br />
-<span class="math inline">\(\quad V_{prov}=\big(N_{vm}\cdot
-V_{vm}\big)\div 1024\)</span></p>
-<p>Total used source volume of workloads in TB:<br />
-<span class="math inline">\(\quad V_{used}=V_{prov}\cdot
-U_{vm}\)</span></p>
-<p>Volume of a single incremental backup in TB:<br />
-<span class="math inline">\(\quad V_{incr}=(1-P_{veeam})\cdot
-V_{used}\cdot\Delta_{daily}\)</span></p>
-<p>Total backup volume in TB (<span class="math inline">\(=\)</span>
-single full backup plus <span
-class="math inline">\((R_{days}-1)\)</span> incremental backups):<br />
-<span class="math inline">\(\quad
-V_{total}=\Big(1-P_{veeam}\Big)\cdot\Big(V_{used}+\big((V_{used}\cdot\Delta_{daily})\cdot(R_{days}-1)\big)\Big)\)</span></p>
-<p>Total snapshot volume in TB (if <span
-class="math inline">\(\delta_{isfull}=0\)</span>):<br />
-<span class="math inline">\(\quad
-V_{snaps}=V_{used}\cdot\Delta_{daily}\cdot N_{snaps}\)</span></p>
-<p>Total snapshot volume [TB] (if <span
-class="math inline">\(\delta_{isfull}=1\)</span>):<br />
-<span class="math inline">\(\quad
-V_{snaps}=\Big(V_{used}\cdot\Delta_{daily}\cdot(N_{snaps}-1)\Big)+V_{used}\)</span></p>
-<p>Throughput required for incremental backup in MB/s:<br />
-<span class="math inline">\(\quad\Phi_{incr}=\big(V_{incr}\cdot
-1024^2\big)\div\big(T_{incr}\cdot 3600\big)\)</span></p>
-<p>Veeam workers required for incremental backup (rounded up to full
-integer):<br />
-<span class="math inline">\(\quad
-N_{workers}=\Phi_{incr}\div\psi_{worker}\)</span></p>
-<p>Estimated number of API <em>put</em> calls within given <span
-class="math inline">\(days\)</span> (incrementals only):<br />
-<span class="math inline">\(\quad
-A_{put}(days)=\big(days\cdot\Delta_{daily}\cdot V_{used}\cdot
-1024^3\big)\div\beta_{veeam}\)</span></p>
-<p>Maximum number of Veeam workers per storage account (rounded up to
-integer), based on storage account limit given as <span
-class="math inline">\(\psi\)</span> in MB/s:<br />
-<span class="math inline">\(\quad
-N_{workers_{max}}(\psi_{stacc})=\psi_{stacc}\div\psi_{worker}\)</span></p>
-<p>Number of storage accounts required (rounded up to integer), based on
-storage account limit given as <span class="math inline">\(\psi\)</span>
-in MB/s:<br />
-<span class="math inline">\(\quad
-N_{stacc}(\psi_{stacc})=\textrm{max}\Big((\Phi_{incr}\div\psi_{stacc}),(N_{workers}\div
-N_{workers_{max}})\Big)\)</span></p>
+<h3 id="general">General</h3>
+<table>
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Value</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Total provisioned source volume of workloads in TB</td>
+<td><span class="math inline">\(V_{prov}=\big(N_{vm}\cdot
+V_{vm}\big)\div 1024\)</span></td>
+</tr>
+<tr class="even">
+<td>Total used source volume (average) of workloads in TB</td>
+<td><span class="math inline">\(V_{used}=V_{prov}\cdot
+U_{vm}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Total snapshot volume in TB (if <span
+class="math inline">\(\delta_{isfull}=0\)</span>)</td>
+<td><span
+class="math inline">\(V_{snaps}=V_{used}\cdot\Delta_{daily}\cdot
+N_{snaps}\)</span></td>
+</tr>
+<tr class="even">
+<td>Total snapshot volume in TB (if <span
+class="math inline">\(\delta_{isfull}=1\)</span>)</td>
+<td><span
+class="math inline">\(V_{snaps}=\Big(V_{used}\cdot\Delta_{daily}\cdot(N_{snaps}-1)\Big)+V_{used}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="veeam-backup">Veeam Backup</h3>
+<table>
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Value</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Volume of a single incremental backup in TB</td>
+<td><span class="math inline">\(V_{veeam}^{incr}=(1-P_{veeam})\cdot
+V_{used}\cdot\Delta_{daily}\)</span></td>
+</tr>
+<tr class="even">
+<td>Total backup volume in TB</td>
+<td><span
+class="math inline">\(V_{veeam}^{total}=\Big(1-P_{veeam}\Big)\cdot\Big(V_{used}+\big((V_{used}\cdot\Delta_{daily})\cdot(R_{days}-1)\big)\Big)\)</span></td>
+</tr>
+<tr class="odd">
+<td>Throughput required for incremental backup in MB/s</td>
+<td><span class="math inline">\(\Phi_{incr}=\big(V_{veeam}^{incr}\cdot
+1024^2\big)\div\big(T_{incr}\cdot 3600\big)\)</span></td>
+</tr>
+<tr class="even">
+<td>Veeam workers required for incremental backup<br/><span
+class="math inline">\(\quad\)</span>rounded up to full integer</td>
+<td><span
+class="math inline">\(N_{workers}=\Phi_{incr}\div\psi_{worker}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Estimated number of API <em>put</em> calls within given <span
+class="math inline">\(days\)</span><br/><span
+class="math inline">\(\quad\)</span>incrementals only</td>
+<td><span
+class="math inline">\(A_{put}(days)=\big(days\cdot\Delta_{daily}\cdot
+V_{used}\cdot 1024^3\big)\div\beta_{veeam}\)</span></td>
+</tr>
+<tr class="even">
+<td>Maximum number of Veeam workers per storage account in
+MB/s<br/><span class="math inline">\(\quad\)</span>rounded up to full
+integer, based on storage account limit given as <span
+class="math inline">\(\psi_{stacc}\)</span></td>
+<td><span
+class="math inline">\(N_{workers_{max}}(\psi_{stacc})=\psi_{stacc}\div\psi_{worker}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Number of storage accounts required in MB/s<br/><span
+class="math inline">\(\quad\)</span>rounded up to full integer, based on
+storage account limit given as <span
+class="math inline">\(\psi_{stacc}\)</span></td>
+<td><span
+class="math inline">\(N_{stacc}(\psi_{stacc})=\textrm{max}\Big((\Phi_{incr}\div\psi_{stacc}),(N_{workers}\div
+N_{workers_{max}})\Big)\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="azure-backup">Azure Backup</h3>
+<table>
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Value</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Volume of a single full backup in TB</td>
+<td><span class="math inline">\(V_{azure}^{full}=(1-P_{azure})\cdot
+V_{used}\)</span></td>
+</tr>
+<tr class="even">
+<td>Volume of a single incremental backup in TB</td>
+<td><span
+class="math inline">\(V_{azure}^{incr}=V_{azure}^{full}\cdot\Delta_{daily}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Total backup volume in TB (no GFS)</td>
+<td><span class="math inline">\(V_{azure}^{total}=V_{azure}^{full}+
+\big(V_{azure}^{incr} \cdot(R_{days}-1)\big)\)</span></td>
+</tr>
+</tbody>
+</table>
 </body>
 </html>
