@@ -11,5 +11,5 @@ if exist "%out-html%" del "%out-html%"
 
 
 :: create html output
-"%pandoc_bin%" --mathjax --highlight-style=breezeDark %srcfile% -s -t html -c .\water.css -o %out_html%
-::"%pandoc_bin%" --pdf-engine=xelatex --mathjax -H .\header.sty -o %out_pdf% %srcfile%
+::"%pandoc_bin%" --mathjax --highlight-style=breezeDark %srcfile% -s -t html -c .\water.css -o %out_html%
+"%pandoc_bin%" --pdf-engine=xelatex --mathjax -H .\header.sty -o %out_pdf% %srcfile%

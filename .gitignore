@@ -1,4 +1,5 @@
 *.err
+*.xls*
 tmp.md
 tex2pdf*
 tex2pdf*/*
